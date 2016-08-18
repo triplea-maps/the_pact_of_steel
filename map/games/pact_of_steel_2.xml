@@ -1699,8 +1699,8 @@
 		transportCost						values: the space this unit takes up in a transport
 		transportCapacity					values: the amount of space of land units this unit can carry. can be used with sea or air units, except that air units will also require isAirTransport.
 		isCombatTransport					values: considers a unit to be a combat sea unit, even if it has transport capacity, for the purposes of convoys and restricted attack on transports
-		isParatroop							values: does nothing
-		isMechanized						values: does nothing
+		isAirTransportable							values: does nothing
+		isInfantry						values: does nothing
 		
 		canScramble							values: allows the aircraft to enter a surrounding sea zone if the enemy is doing an attack on or from the surrounding sea zone
 		maxScrambleDistance					values: the distance out an aircraft can scramble. anything higher than 1 is not supported well at this point.
@@ -1834,9 +1834,9 @@
       <!-- canBeCapturedOnEnteringBy will allow a unit to be captured from one player to another, if the specified player enters a territory with captureUnitOnEnteringBy
 					must be a list of Players who this unit can be given to.  example: value="Russians:Chinese"
 			<option name="canBeCapturedOnEnteringBy" value="Americans:British"/>-->
-      <!-- isParatroop and isMechanized currently do NOTHING, and are only kept for backwards compatibility
-			<option name="isParatroop" value="false"/>
-			<option name="isMechanized" value="false"/> -->
+      <!-- isAirTransportable and isInfantry currently do NOTHING, and are only kept for backwards compatibility
+			<option name="isAirTransportable" value="false"/>
+			<option name="isInfantry" value="false"/> -->
     </attachment>
     <!-- Artillery -->
     <attachment name="unitAttachment" attachTo="artillery" javaClass="games.strategy.triplea.attachments.UnitAttachment" type="unitType">
@@ -2018,7 +2018,7 @@
       <option name="transportCapacity" value="5"/>
       <!-- isCombatTransport tells the engine that this sea unit can transport but can fight too. units will not be able to move through it like they would a transport, and it can be taken casualty during battle as normal -->
       <option name="isCombatTransport" value="true"/>
-      <!--<option name="isTwoHit" value="true"/>-->
+      <!--<option name="hitPoints" value="2"/>-->
       <!-- whenCombatDamaged means that when this unit has x:y damage on it, it will have this effect
 			<option name="whenCombatDamaged" value="unitsMayNotLandOnCarrier" count="1:2"/>
 			<option name="whenCombatDamaged" value="unitsMayNotLeaveAlliedCarrier" count="1:2"/>-->
@@ -2071,7 +2071,7 @@
 					if "More Constructions with/without Factory" = true, then the minimum will be either maxConstructionsPerTypePerTerr or the PU value of the territory (whichever number is greater) in territories with/without factories
 					if "Unlimited Constructions" = true, then this number becomes 10000 -->
       <option name="maxConstructionsPerTypePerTerr" value="1"/>
-      <!--<option name="isTwoHit" value="true"/>-->
+      <!--<option name="hitPoints" value="2"/>-->
       <!-- canDieFromReachingMaxDamage means that if this unit reaches its maxDamage, then it will die.  maxDamage must be larger than zero -->
       <option name="canDieFromReachingMaxDamage" value="true"/>
       <!-- requiresUnits is a list of units required to be present in the territory in order for you to build this unit there.  Can have multiple instances. Only one instance needs to be true in order to build. -->
@@ -2867,48 +2867,48 @@
     </attachment>
     <attachment name="objectiveAttachmentAmericans1_WarPhase1" attachTo="Americans" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
       <option name="objectiveValue" value="2"/>
-      <option name="turns" value="2-3"/>
+      <option name="rounds" value="2-3"/>
     </attachment>
     <attachment name="objectiveAttachmentAmericans1_WarPhase2" attachTo="Americans" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
       <option name="objectiveValue" value="4"/>
-      <option name="turns" value="4-5"/>
+      <option name="rounds" value="4-5"/>
     </attachment>
     <attachment name="objectiveAttachmentAmericans1_WarPhase3" attachTo="Americans" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
       <option name="objectiveValue" value="6"/>
-      <option name="turns" value="6-7"/>
+      <option name="rounds" value="6-7"/>
     </attachment>
     <attachment name="objectiveAttachmentAmericans1_WarPhase4" attachTo="Americans" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
       <option name="objectiveValue" value="8"/>
-      <option name="turns" value="8-9"/>
+      <option name="rounds" value="8-9"/>
     </attachment>
     <attachment name="objectiveAttachmentAmericans1_WarPhase5" attachTo="Americans" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
       <option name="objectiveValue" value="10"/>
-      <option name="turns" value="10-+"/>
+      <option name="rounds" value="10-+"/>
     </attachment>
     <!--
 		<attachment name="objectiveAttachmentAmericans8" attachTo="Americans" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
 			<option name="objectiveValue" value="12"/>
-			<option name="turns" value="12-13"/>
+			<option name="rounds" value="12-13"/>
 		</attachment>
 
 		<attachment name="objectiveAttachmentAmericans9" attachTo="Americans" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
 			<option name="objectiveValue" value="14"/>
-			<option name="turns" value="14-15"/>
+			<option name="rounds" value="14-15"/>
 		</attachment>
 
 		<attachment name="objectiveAttachmentAmericans10" attachTo="Americans" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
 			<option name="objectiveValue" value="16"/>
-			<option name="turns" value="16-17"/>
+			<option name="rounds" value="16-17"/>
 		</attachment>
 
 		<attachment name="objectiveAttachmentAmericans11" attachTo="Americans" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
 			<option name="objectiveValue" value="18"/>
-			<option name="turns" value="18-19"/>
+			<option name="rounds" value="18-19"/>
 		</attachment>
 
 		<attachment name="objectiveAttachmentAmericans12" attachTo="Americans" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
 			<option name="objectiveValue" value="20"/>
-			<option name="turns" value="20-+"/>
+			<option name="rounds" value="20-+"/>
 		</attachment>-->
     <!-- Chinese Objectives -->
     <attachment name="objectiveAttachmentChinese2_BurmaRoad" attachTo="Chinese" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
@@ -2926,20 +2926,20 @@
     </attachment>
     <!-- Germans Conditions -->
     <attachment name="conditionAttachmentGermans1" attachTo="Germans" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
-      <option name="turns" value="4:5"/>
+      <option name="rounds" value="4:5"/>
       <option name="enemySurfaceExclusionTerritories" value="5 Sea Zone:6 Sea Zone:7 Sea Zone" count="3"/>
     </attachment>
     <attachment name="conditionAttachmentGermans2" attachTo="Germans" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
-      <option name="turns" value="3:4"/>
+      <option name="rounds" value="3:4"/>
       <option name="alliedOwnershipTerritories" value="East Balkans:Eastern Europe:Ukraine S.S.R.:Belorussia:Karelia S.S.R.:Archangel:Caucus" count="6"/>
     </attachment>
     <attachment name="conditionAttachmentGermans3a" attachTo="Germans" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
-      <option name="turns" value="3:4"/>
+      <option name="rounds" value="3:4"/>
       <option name="alliedOwnershipTerritories" value="Western Europe" count="1"/>
       <option name="invert" value="true"/>
     </attachment>
     <attachment name="conditionAttachmentGermans3b" attachTo="Germans" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
-      <option name="turns" value="3:4"/>
+      <option name="rounds" value="3:4"/>
       <option name="alliedOwnershipTerritories" value="Norway" count="1"/>
     </attachment>
     <attachment name="conditionAttachmentGermansParatroopers" attachTo="Germans" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
@@ -2975,14 +2975,14 @@
       <option name="invert" value="true"/>
     </attachment>
     <attachment name="conditionAttachmentJapanese1b" attachTo="Japanese" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
-      <option name="turns" value="3:4"/>
+      <option name="rounds" value="3:4"/>
     </attachment>
     <attachment name="conditionAttachmentJapanese2" attachTo="Japanese" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
-      <option name="turns" value="3:4:5"/>
+      <option name="rounds" value="3:4:5"/>
       <option name="alliedOwnershipTerritories" value="Australia:India:Sinkiang" count="3"/>
     </attachment>
     <attachment name="conditionAttachmentJapanese3" attachTo="Japanese" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
-      <option name="turns" value="1-2:3:4-+"/>
+      <option name="rounds" value="1-2:3:4-+"/>
       <option name="directOwnershipTerritories" value="original"/>
       <option name="invert" value="true"/>
     </attachment>
@@ -3027,7 +3027,7 @@
     </attachment>
     <!-- Italians Conditions -->
     <attachment name="conditionAttachmentItalians1" attachTo="Italians" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
-      <option name="turns" value="3:4"/>
+      <option name="rounds" value="3:4"/>
       <option name="alliedOwnershipTerritories" value="Algeria:Libya:Anglo Egypt:Trans-Jordan" count="4"/>
     </attachment>
     <attachment name="conditionAttachmentItaliansParatroopers" attachTo="Italians" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
@@ -3037,29 +3037,29 @@
       <option name="techs" value="shipyards" count="1"/>
     </attachment>
     <attachment name="conditionAttachmentItalianTurn2" attachTo="Italians" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
-      <option name="turns" value="2"/>
+      <option name="rounds" value="2"/>
     </attachment>
     <attachment name="conditionAttachmentItalianTurn1" attachTo="Italians" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
-      <option name="turns" value="1"/>
+      <option name="rounds" value="1"/>
     </attachment>
     <!-- Americans Conditions -->
     <attachment name="conditionAttachmentAmericans1_WarPhase" attachTo="Americans" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
-      <option name="turns" value="2-+"/>
+      <option name="rounds" value="2-+"/>
     </attachment>
     <attachment name="conditionAttachmentAmericans1" attachTo="Americans" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
-      <option name="turns" value="3-5"/>
+      <option name="rounds" value="3-5"/>
       <option name="alliedOwnershipTerritories" value="Western Europe" count="1"/>
     </attachment>
     <attachment name="conditionAttachmentAmericans2" attachTo="Americans" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
-      <option name="turns" value="3-5"/>
+      <option name="rounds" value="3-5"/>
       <option name="alliedOwnershipTerritories" value="Alaska:Wake Island:Hawaiian Islands:Midway" count="4"/>
     </attachment>
     <attachment name="conditionAttachmentAmericans3a" attachTo="Americans" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
-      <option name="turns" value="1-8"/>
+      <option name="rounds" value="1-8"/>
       <option name="alliedOwnershipTerritories" value="Western Europe" count="1"/>
     </attachment>
     <attachment name="conditionAttachmentAmericans3b" attachTo="Americans" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
-      <option name="turns" value="1:2:3-7:8"/>
+      <option name="rounds" value="1:2:3-7:8"/>
       <option name="alliedOwnershipTerritories" value="Alaska:Wake Island:Hawaiian Islands:Midway" count="4"/>
     </attachment>
     <attachment name="conditionAttachmentAmericans4" attachTo="Americans" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
@@ -3073,7 +3073,7 @@
     </attachment>
     <!-- British Conditions -->
     <attachment name="conditionAttachmentBritish2" attachTo="British" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
-      <option name="turns" value="3:4"/>
+      <option name="rounds" value="3:4"/>
       <option name="alliedOwnershipTerritories" value="Union of South Africa:Gibraltar:Anglo Egypt:India:Australia" count="4"/>
     </attachment>
     <attachment name="conditionAttachmentBritishParatroopers" attachTo="British" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
@@ -3084,7 +3084,7 @@
     </attachment>
     <!-- Russians Conditions -->
     <attachment name="conditionAttachmentRussians2" attachTo="Russians" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
-      <option name="turns" value="3:4"/>
+      <option name="rounds" value="3:4"/>
       <option name="alliedOwnershipTerritories" value="Karelia S.S.R.:Caucus" count="2"/>
     </attachment>
     <attachment name="conditionAttachmentRussiansNeutralAmericans" attachTo="Russians" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
@@ -3094,7 +3094,7 @@
       <option name="relationship" value="Japanese:Russians:anyNeutral"/>
     </attachment>
     <attachment name="conditionAttachmentRussiansNeutralJapanTurn5plus" attachTo="Russians" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
-      <option name="turns" value="5-+"/>
+      <option name="rounds" value="5-+"/>
       <option name="relationship" value="Japanese:Russians:anyNeutral"/>
     </attachment>
     <attachment name="conditionAttachmentRussiansNeutralItalians" attachTo="Russians" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
@@ -4550,10 +4550,10 @@
     <property name="Kamikaze Suicide Attacks Only Where Battles Are" value="false" editable="false">
       <boolean/>
     </property>
-    <property name="Units repair at end of round" value="true" editable="true">
+    <property name="Units Repair Hits End Turn" value="true" editable="true">
       <boolean/>
     </property>
-    <property name="Units repair at beginning of round" value="false" editable="true">
+    <property name="Units Repair Hits Start Turn" value="false" editable="true">
       <boolean/>
     </property>
     <!-- in order to repair, a unit must in the presence of a unit with "repairsUnits" unit attachment -->
