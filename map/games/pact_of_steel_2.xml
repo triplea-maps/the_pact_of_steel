@@ -553,6 +553,10 @@
   </resourceList>
   <playerList>
     <!-- In turn order (it is important that the players are listed in turn order)-->
+    <!-- optional: just means 'does this player require a capital?'.  if optional is false, they require at least 1 capital.  if optional is true, they may have no capitals. -->
+    <!-- canBeDisabled: if true means that the player will skip all of their phases. their delegates will be removed from the game (so triggers will not happen during those delegates either) -->
+    <!-- defaultType: optional, default is "Human"; options are "Human", "AI", "DoesNothing"; sets player to this type by default in the player selection window -->
+    <!-- isHidden: optional, default is "false"; options are "true", "false"; if true doesn't show player in player selection window -->
     <player name="Italians" optional="false" canBeDisabled="false"/>
     <player name="Russians" optional="false" canBeDisabled="false"/>
     <player name="Germans" optional="false" canBeDisabled="false"/>
@@ -560,8 +564,6 @@
     <player name="Japanese" optional="false" canBeDisabled="false"/>
     <player name="Americans" optional="false" canBeDisabled="false"/>
     <player name="Chinese" optional="false" canBeDisabled="false"/>
-    <!-- optional just means 'does this player require a capital?'.  if optional is false, they require at least 1 capital.  if optional is true, they may have no capitals. -->
-    <!-- canBeDisabled if true means that the player will skip all of their phases. their delegates will be removed from the game (so triggers will not happen during those delegates either) -->
     <!-- Alliances can have any name, not just axis and allies.  There can be more than 2 alliances -->
     <!-- Since triplea version 1.3.3.0 it is preferred to use relationships instead of or in addition to alliances. If relationships are set, then alliances will only matter for the stats panel and any game option type victory conditions -->
     <!-- Axis alliance -->
@@ -4928,19 +4930,6 @@
     </property>
     <property name="Neutral Flyover Allowed" value="false" editable="false">
       <boolean/>
-    </property>
-    <!-- AI related -->
-    <property name="AI Bonus Income Flat Rate" value="0" editable="true">
-      <number min="-10" max="30"/>
-    </property>
-    <property name="AI Bonus Income Percentage" value="20" editable="true">
-      <number min="-30" max="120"/>
-    </property>
-    <property name="AI Bonus Attack" value="0" editable="true">
-      <number min="0" max="2"/>
-    </property>
-    <property name="AI Bonus Defense" value="0" editable="true">
-      <number min="0" max="2"/>
     </property>
     <!-- Map Name: also used for map utils when asked (MUST exactly match the folder or zip name of your map (do not include the .zip of course). May point to another map folder if you are making a mod of that map) -->
     <property name="mapName" value="the_pact_of_steel" editable="false">
