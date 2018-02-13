@@ -3,10 +3,10 @@
 <game>
   <info name="Pact of Steel 2" version="3.8"/>
   <!-- A MOD of original POS by VEQRYN
-			The purpose is to provide a fun game that shows off all the new features of TripleA since 1.2.5.5
-			as well include documentation inside the xml in order to show map makers how to use all the new features.
+			The purpose is to provide a fun game that shows off many features of TripleA as well include 
+			documentation inside the xml in order to show map makers how to use all the features.
 			If you have questions on how to use something, or think my documentation is not clear enough,
-			please go to the forum and make a post: http://triplea.sourceforge.net/mywiki/Forum
+			please go to the forum and make a post: https://forums.triplea-game.org/category/28/map-making
 	-->
   <!-- loader is required by all xmls.  some xmls may use a different loader, like a puzzle game -->
   <loader javaClass="games.strategy.triplea.TripleA"/>
