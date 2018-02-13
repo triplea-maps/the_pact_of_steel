@@ -4534,6 +4534,7 @@
     <property name="Remove All Tech Tokens At End Of Turn" value="false" editable="false">
       <boolean/>
     </property>
+		<!-- If "true" adds 0-1 to the submarines defensive value if and when SuperSubs tech is activated -->
     <property name="Super Sub Defence Bonus" value="0" editable="true">
       <number min="0" max="1"/>
     </property>
@@ -4772,6 +4773,9 @@
     <property name="Surviving Air Move To Land" value="true" editable="false">
       <boolean/>
     </property>
+		<!-- If set to "true" a destroyer (isDestroyer) is required in the seazone in order for an air unit (isAir) to be able to hit an enemy submarine (isSub). 
+		Furthermore if air unit is the attacker, the destroyer must be owned by the attackers nation. If air unit is a defender, the destroyer can be owned by a allied nation as long as it is also at war with enemy submarines nations. 
+		This will also determine if the air unit rolls together or rolls seperately or rolls nothing, depending on the makeup of other allied units in the seazone when a submarine unit is present. -->
     <property name="Air Attack Sub Restricted" value="true" editable="false">
       <boolean/>
     </property>
@@ -4789,16 +4793,19 @@
     <property name="Transport Control Sea Zone" value="false" editable="false">
       <boolean/>
     </property>
-    <!-- Submarines stop transports from doing amphibious assault unless there is at least 1 owned warship in the sea zone -->
+    <!-- Submarines stop transports from doing amphibious assault unless there is at least 1 owned warship in the sea zone. If "true" submarine units are being counted as escorts. Combat transports are unaffected by this property. -->
     <property name="Submarines Prevent Unescorted Amphibious Assaults" value="false" editable="false">
       <boolean/>
     </property>
+		<!-- Allows naval units to bypass subs during movement phase (both combat and non combat). Also allows units ending moves in a SZ occupied by an enemy sub with the choice to either attack or ignore enemy sub. -->
     <property name="Ignore Sub In Movement" value="true" editable="false">
       <boolean/>
     </property>
+		<!-- They have first strike when defending as well unless a destroyer is present -->
     <property name="Defending Subs Sneak Attack" value="true" editable="false">
       <boolean/>
     </property>
+		<!-- Allows option for subs to withdraw from battle prior to the combat rolls -->
     <property name="Sub Retreat Before Battle" value="true" editable="false">
       <boolean/>
     </property>
@@ -4806,10 +4813,12 @@
     <property name="Submarines Defending May Submerge Or Retreat" value="false" editable="false">
       <boolean/>
     </property>
+		<!-- Subs can travel through enemy sea zones except if enemy destroyer is present. Subs have the option to submerge rather than withdraw. -->
     <property name="Submersible Subs" value="true" editable="false">
       <boolean/>
     </property>
-    <!-- Sub Control Sea Zone Restricted should be FALSE if there are any convoy zones! If true, subs will not be able to capture convoy zones. -->
+		<!-- Sub Control Sea Zone Restricted should be FALSE if there are any convoy zones! If true, subs will not be able to capture convoy zones. 
+		Determines whether or not a sub can controls a sea zone. Determines if transports can't unload if a sub is present -->
     <property name="Sub Control Sea Zone Restricted" value="false" editable="false">
       <boolean/>
     </property>
