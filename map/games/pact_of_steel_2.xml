@@ -1117,7 +1117,8 @@
     </repairFrontier>
     <!-- all players can use the same frontier, or you can have a different frontier for each player -->
     <!-- only "production" (a single production frontier) is needed for most maps. if you use ww2v2 tech then you need IndustrialTechnology production, and if you use ww2v3 tech you need Shipyards -->
-    <!--<productionFrontier name="production">
+    <!-- the order of units in the productionFrontier is used to determine the order in which they display in the battle calculator after grouping (land, air, can't combat move, bombard) -->
+	<!--<productionFrontier name="production">
 			<frontierRules name="buyInfantry"/>
 			<frontierRules name="buyArtillery"/>
 			<frontierRules name="buyArmour"/>
@@ -1694,23 +1695,30 @@
 		canInvadeOnlyFrom					values: is a colon dilimited list of the transporting units which this unit can perform amphibious assaults from.
 														A unit which can not perform amphibious assaults may instead disembark during non-combat
 														can be set to "all", or "none", or a list of some transports. if this option is not present, it defaults to "all"
-		isInfantry							values: allows the unit to be transported by 'isLandTransport' IF you have mechanizedInfantry technology
-		isLandTransport						values: allows the unit to transport "isInfantry" on a one-to-one basis, if you have the mechanizedInfantry technology
+		requiresUnitsToMove					values: is a list of units required to be present in all territories of a unit's route for it to move.  Can have multiple instances. Only one instance needs to be true in order to move.
+														Checks all owned/allied units in each territory along the unit's route for necessary units.
+														examples: <option name="requiresUnitsToMove" value="Rail:Road"/> would mean we need at least one Rail AND at least one Road in order to move there.
+														If after that line we had a second line saying <option name="requiresUnits" value="SuperRail"/> then it would mean OR we need at least one SuperRail.
+		
+		isLandTransportable					values: allows the unit to be transported by 'isLandTransport', if you have mechanizedInfantry technology
+		isInfantry							values: DEPRECATED, same as isLandTransportable
+		isLandTransport						values: allows the unit to transport "isLandTransportable" on a one-to-one basis, if you have the mechanizedInfantry technology
+														If "transportCapacity" is set then use "transportCost" and be able to transport multiple units just like sea transports														
 		isAirTransportable					values: allows the unit to be transported by an "isAirTransport" unit, IF you have paratroopers technology
 		isAirTransport						values: allows an air unit to carry land units when you have paratroopers tech
 		transportCost						values: the space this unit takes up in a transport
 		transportCapacity					values: the amount of space of land units this unit can carry. can be used with sea or air units, except that air units will also require isAirTransport.
 		isCombatTransport					values: considers a unit to be a combat sea unit, even if it has transport capacity, for the purposes of convoys and restricted attack on transports
-		isAirTransportable							values: does nothing
-		isInfantry						values: does nothing
 		
 		canScramble							values: allows the aircraft to enter a surrounding sea zone if the enemy is doing an attack on or from the surrounding sea zone
 		maxScrambleDistance					values: the distance out an aircraft can scramble. anything higher than 1 is not supported well at this point.
 		isSuicide							values: makes a unit die before combat begins, however they do get to roll
+		isSuicideOnHit						values: if unit gets a hit in combat then it instantly dies, can be used for units like mines
 		isKamikaze							values: allows an air unit to use up all of its movement to go to a battle
 		isStrategicBomber					values: allows a unit to bombing factories and canBeDamaged units
 		bombingMaxDieSides					values: is the max dice sides for a strategic bombing or rocket attack.  the default is to use the diceSides for the map.  this property is optional and is only used when you have "Use Bombing Max Dice Sides And Bonus" turned on.  this property is no longer affected by "Low Luck for Bombing and Territory Damage".
-		bombingBonus						values: is a number added to the die rolled, to give the total cost [displayed as a new die rolled], for strategic bombing and rockets only.  this property is optional (default is zero) and is only used when you have "Use Bombing Max Dice Sides And Bonus" turned on.  this property is no longer affected by "Low Luck for Bombing and Territory Damage".
+		bombingBonus						values: is a number added to the die rolled, to give the total cost [displayed as a new die rolled], for strategic bombing and rockets only.  this property is optional (default is zero) and is only used when you have "Use Bombing Max Dice Sides And Bonus" turned on.  
+														this property is no longer affected by "Low Luck for Bombing and Territory Damage". Can be negative to simulate bombers potentially missing and doing no damage.
 														example: if you want a unit to throw a 12 sided die, then add 4 onto the result, you would do: <option name="bombingMaxDieSides" value="12"/> and <option name="bombingBonus" value="4"/>
 		bombingTargets						values: is a list of units that this unit may strategic bomb or rocket attack.  if not present, then all units that can be damaged are legal targets. example: <option name="bombingTargets" value="factory:bunker:airfield:harbour"/>
 		carrierCost							values: the space this unit takes up when sitting on a carrier. if set to 0 then air units can even land on sea zones without a carrier being present (think sea planes)
@@ -1744,12 +1752,21 @@
 		whenCombatDamaged					values: this property lets you set certain behaviors for when this unit is damaged. the value is the effect, while the count is the damage from where to where. (example: <option name="whenCombatDamaged" value="unitsMayNotLandOnCarrier" count="1:2"/>)
 														units start at zero combat damage, and usually die at 1 damage. some units have 2 hp, so you can use this with 1:1 to say that when a unit has 1 damage they have this effect.
 														currently only allows: unitsMayNotLandOnCarrier, unitsMayNotLeaveAlliedCarrier
+		whenHitPointsDamagedChangesInto		values: allows this unit to change into another unit if it takes a certain amount of damage in combat, primarily used for having weaker versions of a unit
+														examples: <option name="whenHitPointsDamagedChangesInto" value="damage:transferAttributes:unitType"/>
+														damage - specifies how many points of damage, transferAttributes - if new unit keeps damage amount, unitType - new unit
+		whenHitPointsRepairedChangesInto	values: allows this unit to change into another unit during repair if it has a certain amount or 0 damage, primarily used to repair weaker versions of a unit
+														examples: <option name="whenHitPointsRepairedChangesInto" value="damage:transferAttributes:unitType"/>
+														damage - specifies how many points of damage, transferAttributes - if new unit keeps damage amount, unitType - new unit
+		
 		canIntercept						values: allows this unit to participate in air raids (air battles for strat bombing), as a defending unit
 		canEscort							values: allows this unit to participate in air raids (air battles for strat bombing), as an attacking unit
 		canAirBattle						values: allows this unit to participate in air battles (for normal battles), as an attacking or defending unit
 		airDefense							values: defense value of interceptor
 		airAttack							values: attack value of escort
+
 		fuelCost							values: fuelCost is a list of at least one resource that get used up for each point of movementCost a unit does.  (can have multiple). example: <option name="fuelCost" value="Fuel" count="5"/> and <option name="fuelCost" value="PUs" count="1"/>
+		tuv									values: overrides default TUV calculation for the unit based on production cost
 
 	production related:
 		isFactory							values: just sets: canBeDamaged, isInfrastructure, canProduceUnits, isConstruction, constructionType = "factory", maxConstructionsPerTypePerTerr = 1, constructionsPerTerrPerTypePerTurn = 1
@@ -4830,6 +4847,10 @@
       <boolean/>
     </property>
     <property name="Unit Placement In Enemy Seas" value="true" editable="false">
+      <boolean/>
+    </property>
+	<!-- Allows units to be loaded even if there are enemy ships in the transport's sea zone, used to avoid players blocking unit loading with 1 cheap naval unit -->
+    <property name="Units Can Load In Hostile Sea Zones" value="false" editable="false">
       <boolean/>
     </property>
     <!-- used to add destroyers and artillery to the ww2v1 map
