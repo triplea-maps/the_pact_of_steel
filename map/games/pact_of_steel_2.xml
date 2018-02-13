@@ -1737,7 +1737,7 @@
 		maxOperationalDamage				values: is used with certain features like isAirBase, repairsUnits, and givesMovement to determine if those features work or not based on the current damage of this unit. A disabled unit will not participate in combat too.  Does Not work with isFactory or canProduceUnits.
 		canDieFromReachingMaxDamage			values: means that if this unit reaches its maxDamage, then it will die.  maxDamage must be larger than zero
 		isInfrastructure					values: means a unit does not participate in combat, and they will be captured if the attacker is successful
-		destroyedWhenCapturedFrom			values: is a list of players who destroy a non-combat unit instead of letting it be captured.  destroyedWhenCapturedFrom just takes the value input then adds "FROM:" to the beginning, then calls destroyedWhenCapturedBy with the new value.
+		destroyedWhenCapturedFrom			values: is a list of players who destroy a non-combat unit instead of letting it be captured.  destroyedWhenCapturedFrom just takes the value input then adds "FROM:" to the beginning, then calls destroyedWhenCapturedBy with the new value. This can't be set by triggers, use destroyedWhenCapturedBy instead.
 		destroyedWhenCapturedBy				values: is a list of the players who destroy this non-combat unit instead of capturing it.  all non-combat units are normally captured by default. is a colon delimited list of player names.
 														You can prefix them with single instance of "BY:" or "FROM:" in order to determine if it is being captured by, or captured from, that determines if the unit is destroyed.
 														examples: <option name="destroyedWhenCapturedBy" value="BY:Chinese:Japanese"/> and <option name="destroyedWhenCapturedBy" value="FROM:Russians:Chinese"/>
@@ -3251,8 +3251,8 @@
 				Unit Attachments:
 					canBeGivenByTerritoryTo
 					canBeCapturedOnEnteringBy
-					destroyedWhenCapturedBy
-					destroyedWhenCapturedFrom
+					destroyedWhenCapturedBy 
+					destroyedWhenCapturedFrom (Can't be used by triggers, use destroyedWhenCapturedBy instead)
 					requiresUnits
 					repairsUnits
 					givesMovement
