@@ -1701,7 +1701,7 @@
 														If after that line we had a second line saying <option name="requiresUnits" value="SuperRail"/> then it would mean OR we need at least one SuperRail.
 		
 		isLandTransportable					values: allows the unit to be transported by 'isLandTransport', if you have mechanizedInfantry technology
-		isInfantry							values: DEPRECATED, same as isLandTransportable
+		isInfantry						values: DEPRECATED, same as isLandTransportable
 		isLandTransport						values: allows the unit to transport "isLandTransportable" on a one-to-one basis, if you have the mechanizedInfantry technology
 														If "transportCapacity" is set then use "transportCost" and be able to transport multiple units just like sea transports														
 		isAirTransportable					values: allows the unit to be transported by an "isAirTransport" unit, IF you have paratroopers technology
@@ -1710,40 +1710,42 @@
 		transportCapacity					values: the amount of space of land units this unit can carry. can be used with sea or air units, except that air units will also require isAirTransport.
 		isCombatTransport					values: considers a unit to be a combat sea unit, even if it has transport capacity, for the purposes of convoys and restricted attack on transports
 		
-		canScramble							values: allows the aircraft to enter a surrounding sea zone if the enemy is doing an attack on or from the surrounding sea zone
+		canScramble						values: allows the aircraft to enter a surrounding sea zone if the enemy is doing an attack on or from the surrounding sea zone
 		maxScrambleDistance					values: the distance out an aircraft can scramble. anything higher than 1 is not supported well at this point.
-		isSuicide							values: makes a unit die before combat begins, however they do get to roll
+		isSuicide						values: makes a unit die before combat begins, however they do get to roll
 		isSuicideOnHit						values: if unit gets a hit in combat then it instantly dies, can be used for units like mines
-		isKamikaze							values: allows an air unit to use up all of its movement to go to a battle
+		isKamikaze						values: allows an air unit to use up all of its movement to go to a battle
 		isStrategicBomber					values: allows a unit to bombing factories and canBeDamaged units
 		bombingMaxDieSides					values: is the max dice sides for a strategic bombing or rocket attack.  the default is to use the diceSides for the map.  this property is optional and is only used when you have "Use Bombing Max Dice Sides And Bonus" turned on.  this property is no longer affected by "Low Luck for Bombing and Territory Damage".
 		bombingBonus						values: is a number added to the die rolled, to give the total cost [displayed as a new die rolled], for strategic bombing and rockets only.  this property is optional (default is zero) and is only used when you have "Use Bombing Max Dice Sides And Bonus" turned on.  
 														this property is no longer affected by "Low Luck for Bombing and Territory Damage". Can be negative to simulate bombers potentially missing and doing no damage.
 														example: if you want a unit to throw a 12 sided die, then add 4 onto the result, you would do: <option name="bombingMaxDieSides" value="12"/> and <option name="bombingBonus" value="4"/>
 		bombingTargets						values: is a list of units that this unit may strategic bomb or rocket attack.  if not present, then all units that can be damaged are legal targets. example: <option name="bombingTargets" value="factory:bunker:airfield:harbour"/>
-		carrierCost							values: the space this unit takes up when sitting on a carrier. if set to 0 then air units can even land on sea zones without a carrier being present (think sea planes)
+		carrierCost						values: the space this unit takes up when sitting on a carrier. if set to 0 then air units can even land on sea zones without a carrier being present (think sea planes)
 		carrierCapacity						values: the amount of space or air unit this unit can carry.
 		
-		canBombard							values: allows a sea unit to bombard the enemy during an amphibious assault
-		bombard								values: the value this unit bombards at. defaults to the attack value of the unit if missing
-		blockade							values: allows the unit to do damage up to the value of land territories surrounding a blockade zone, to the enemy's income
-		isDestroyer							values: cancels out an isSub unit's first strike and submerge abilities, and allows it to be hit by air units if using ww2v3 rules
-		isSub								values: allows the unit to roll dice before other units, and submerge or retreat from battle even on defense, and if using ww2v3 rules not be hit by air unless the enemy has an isDestroyer
+		canBombard						values: allows a sea unit to bombard the enemy during an amphibious assault
+		bombard							values: the value this unit bombards at. defaults to the attack value of the unit if missing
+		blockade						values: allows the unit to do damage up to the value of land territories surrounding a blockade zone, to the enemy's income
+		isDestroyer						values: cancels out an isSub unit's first strike and submerge abilities, and allows it to be hit by air units if using ww2v3 rules
+		isSub							values: allows the unit to roll dice before other units, and submerge or retreat from battle even on defense, and if using ww2v3 rules not be hit by air unless the enemy has an isDestroyer
 		
 		canBeDamaged						values: sets if a unit can be attacked by strategic bombing raids or by rockets.  isFactory also allows these things
-		maxDamage							values: is the total bombing damage the unit can take (defaults to 2 if not set).  If a factory, and canProduceXUnits = -1 or is missing then maxDamage will be a multiple of the territory value (maxDamage defaults to 2 if canProduceXUnits = -1), otherwise it will be a set number
+		maxDamage						values: is the total bombing damage the unit can take (defaults to 2 if not set).  If a factory, and canProduceXUnits = -1 or is missing then maxDamage will be a multiple of the territory value (maxDamage defaults to 2 if canProduceXUnits = -1), otherwise it will be a set number
 														So for example, if the unit isFactory Or canProduceUnits, And canProduceXUnits = -1, And maxDamage = 3, THEN you will be able to do 3x the territory value in damage to this unit.
 														If However, canProduceXUnits = 2, and maxDamage = 3, then you can do up to 3 damage to this unit.
-		maxOperationalDamage				values: is used with certain features like isAirBase, repairsUnits, and givesMovement to determine if those features work or not based on the current damage of this unit. A disabled unit will not participate in combat or be able to move.  Does Not work with isFactory or canProduceUnits.
-		canDieFromReachingMaxDamage			values: means that if this unit reaches its maxDamage, then it will die.  maxDamage must be larger than zero
+		maxOperationalDamage					values: is used with certain features like isAirBase, repairsUnits, and givesMovement to determine if those features work or not based on the current damage of this unit. A disabled unit will not participate in combat or be able to move.  Does Not work with isFactory or canProduceUnits.
+		canDieFromReachingMaxDamage				values: means that if this unit reaches its maxDamage, then it will die.  maxDamage must be larger than zero
 		isInfrastructure					values: means a unit does not participate in combat, and they will be captured if the attacker is successful
-		destroyedWhenCapturedFrom			values: is a list of players who destroy a non-combat unit instead of letting it be captured.  destroyedWhenCapturedFrom just takes the value input then adds "FROM:" to the beginning, then calls destroyedWhenCapturedBy with the new value. This can't be set by triggers, use destroyedWhenCapturedBy instead.
-		destroyedWhenCapturedBy				values: is a list of the players who destroy this non-combat unit instead of capturing it.  all non-combat units are normally captured by default. is a colon delimited list of player names.
+		destroyedWhenCapturedFrom				values: is a list of players who destroy a non-combat unit instead of letting it be captured.  destroyedWhenCapturedFrom just takes the value input then adds "FROM:" to the beginning, then calls destroyedWhenCapturedBy with the new value. This can't be set by triggers, use destroyedWhenCapturedBy instead.
+		destroyedWhenCapturedBy					values: is a list of the players who destroy this non-combat unit instead of capturing it.  all non-combat units are normally captured by default. is a colon delimited list of player names.
 														You can prefix them with single instance of "BY:" or "FROM:" in order to determine if it is being captured by, or captured from, that determines if the unit is destroyed.
 														examples: <option name="destroyedWhenCapturedBy" value="BY:Chinese:Japanese"/> and <option name="destroyedWhenCapturedBy" value="FROM:Russians:Chinese"/>
-		whenCapturedChangesInto				values: allows a unit to change into a different unit when captured from a specific player to a specific player.  "fromPlayer:toPlayer:transferAttributes:unitType:numberOfUnits".  accepts "any" instead of a player name. allows multiple.
+		whenCapturedChangesInto					values: allows a unit to change into a different unit when captured from a specific player to a specific player.  "fromPlayer:toPlayer:transferAttributes:unitType:numberOfUnits".  accepts "any" instead of a player name. allows multiple.
 														examples: <option name="whenCapturedChangesInto" value="any:any:true:Minor_Factory:1"/> and <option name="whenCapturedChangesInto" value="Russians:Germans:false:gold:3:lumber:1"/>
-		isAirBase							values: allows units with canScramble to scramble from a territory with this unit
+		whenCapturedSustainsDamage				values: unit takes specified amount of damage when captured
+														examples: <option name="whenCapturedSustainsDamage" value="5"/>
+		isAirBase						values: allows units with canScramble to scramble from a territory with this unit
 		maxScrambleCount					values: max number of units which can scramble from this air base. defaults to infinite.
 		givesMovement						values: allows a unit to give movement to other units.  must be an integer, followed by a colon ":", followed by the name of the unit
 		repairsUnits						values: is a colon delimited list of all the units this unit can repair. it should start with the amount to be repaired (or use 'count' for the amount to be repaired) each turn. if not used, defaults to 1.
@@ -1752,10 +1754,10 @@
 		whenCombatDamaged					values: this property lets you set certain behaviors for when this unit is damaged. the value is the effect, while the count is the damage from where to where. (example: <option name="whenCombatDamaged" value="unitsMayNotLandOnCarrier" count="1:2"/>)
 														units start at zero combat damage, and usually die at 1 damage. some units have 2 hp, so you can use this with 1:1 to say that when a unit has 1 damage they have this effect.
 														currently only allows: unitsMayNotLandOnCarrier, unitsMayNotLeaveAlliedCarrier
-		whenHitPointsDamagedChangesInto		values: allows this unit to change into another unit if it takes a certain amount of damage in combat, primarily used for having weaker versions of a unit
+		whenHitPointsDamagedChangesInto				values: allows this unit to change into another unit if it takes a certain amount of damage in combat, primarily used for having weaker versions of a unit
 														examples: <option name="whenHitPointsDamagedChangesInto" value="damage:transferAttributes:unitType"/>
 														damage - specifies how many points of damage, transferAttributes - if new unit keeps damage amount, unitType - new unit
-		whenHitPointsRepairedChangesInto	values: allows this unit to change into another unit during repair if it has a certain amount or 0 damage, primarily used to repair weaker versions of a unit
+		whenHitPointsRepairedChangesInto			values: allows this unit to change into another unit during repair if it has a certain amount or 0 damage, primarily used to repair weaker versions of a unit
 														examples: <option name="whenHitPointsRepairedChangesInto" value="damage:transferAttributes:unitType"/>
 														damage - specifies how many points of damage, transferAttributes - if new unit keeps damage amount, unitType - new unit
 		
