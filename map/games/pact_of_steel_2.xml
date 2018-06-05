@@ -2658,8 +2658,9 @@
       <option name="blockadeZone" value="true"/>
     </attachment>
     <!-- Canals -->
-    <!-- You may have multiple canalAttachment's per territory, so long as they have different names that start with "canalAttachment".
-			Each "canal" must consist of 2 attachments attached to the connected sea (or land) zones. -->
+    <!-- You may have multiple canalAttachments per land or sea zone, so long as they have different names that start with "canalAttachment". You should anyway specifically name the canalAttachment (not necessary).
+			Each "canal" must consist of 2 attachments attached to a pair of connected land or sea zones (meaning that are part of a same connection, you should also define). Despite what the name may mean, a "canal" only effect is to limit movement between the zones it is attached to (so, it is not really representing the canal itself, but the ability of closing it from a territory; or similar cases, like booms, etc.).
+			In case of multiple canals (meaning multiple pairs of canal attachments) for the same two connected zones, a unit is blocked only if blocked by all of the canals. If the property "Control All Canals Between Territories To Pass" is true, a unit is blocked if blocked by any of the canals. -->
     <!-- The following options are allowed for "canalAttachmentXXX" (all canal attachments need identical attachments attached to the 2 sea zones involved).
 				canalName							values: any string name for the canal. must match its counterpart attachment.
 				landTerritories						values: a colon (":") delimited list of the territories that make up this canal. must match its counterpart attachment. Can be any number of territories, but at least 1 territory.
@@ -4827,6 +4828,10 @@
     </property>
     <!-- if true, naval units may not move into convoy zones or controlled sea zones during non-combat moves -->
     <property name="Naval Units May Not NonCombat Move Into Controlled Sea Zones" value="false" editable="false">
+      <boolean/>
+    </property>
+    <!-- if true, units need to be able to pass through all canals of a same connection to move from one to the other zone -->
+    <property name="Control All Canals Between Territories To Pass" value="false" editable="false">
       <boolean/>
     </property>
     <!-- Only affects units exactly called "battleship" -->
