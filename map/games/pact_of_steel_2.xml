@@ -543,11 +543,12 @@
     <!-- PUs and techTokens are default supported resources. (all maps should use "PUs" as the default "money", as a map without PUs may fail. -->
     <resource name="PUs"/>
     <resource name="techTokens"/>
+    <!-- Use isDisplayedFor to only show resources for certain players or NONE -->	  
     <!-- These are custom resources.
-		<resource name="Steel"/>
-		<resource name="Aluminium"/>
+		<resource name="Steel" isDisplayedFor="Russia:Germany"/>
+		<resource name="Aluminium" isDisplayedFor="NONE"/>
 		<resource name="Fuel"/>
-		<resource name="SuicideAttackTokens"/>-->
+		<resource name="SuicideAttackTokens" isDisplayedFor="Japan"/>-->
     <!-- VPs are only semi-supported by the code as of right now. They are used for special pacific rules.
 		<resource name="VPs"/>-->
   </resourceList>
@@ -1768,7 +1769,8 @@
 		airAttack							values: attack value of escort
 
 		fuelCost							values: fuelCost is a list of at least one resource that get used up for each point of movementCost a unit does.  (can have multiple). example: <option name="fuelCost" value="Fuel" count="5"/> and <option name="fuelCost" value="PUs" count="1"/>
-		tuv									values: overrides default TUV calculation for the unit based on production cost
+		fuelFlatCost						values: charges fuel flat cost if unit moves any amount during turn rather than for each movement point. (can have multiple). example: <option name="fuelFlatCost" value="Fuel" count="2"/>
+                tuv									values: overrides default TUV calculation for the unit based on production cost
 
 	production related:
 		isFactory							values: just sets: canBeDamaged, isInfrastructure, canProduceUnits, isConstruction, constructionType = "factory", maxConstructionsPerTypePerTerr = 1, constructionsPerTerrPerTypePerTurn = 1
