@@ -1677,12 +1677,9 @@
 		defense								values: the defense value, where a rolled dice must be equal or less than to hit the enemy
 		hitPoints							values: how many hit points this unit has (default is 1)
 		
-		artillerySupportable				values: with the 'artillery' and 'unitSupportCount' ability, these three create a set of support attachments at the start of the game,
-														allows the unit to receive support from an "artillery" unit (land, sea, or air are allowed)
-		artillery							values: with the 'artillerySupportable' and 'unitSupportCount' ability, these three create a set of support attachments at the start of the game,
-														artillery gives support (+1 attack) to "artillerySupportable" units (land, sea, or air are allowed)
-		unitSupportCount					values: with the 'artillerySupportable' and 'artillery' ability, these three create a set of support attachments at the start of the game,
-														unitSupportCount is the number of units that will be supported by the artillery, defaults to 1 if missing
+		artillerySupportable					DEPRECATED: use SupportAttachment
+		artillery						DEPRECATED: use SupportAttachment
+		unitSupportCount					DEPRECATED: use SupportAttachment
 		attackRolls							values: number of rolls this unit gets on attack (default = 1)
 		defenseRolls						values: number of rolls this unit gets on defense (default = 1)
 		chooseBestRoll						values: true/false, whether we pick the best dice or use all dice rolls, when there is more than one roll (default false). When in Low Luck, we instead add +1 onto the power for each extra roll.
