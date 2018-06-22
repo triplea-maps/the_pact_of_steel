@@ -3897,7 +3897,7 @@
 				chanceDecrementOnSuccess 			value: 	integer that will decrease our chance by x each time we succeed (default = 0)
 				costPU								DEPRECATED: please use costResources
 				costResources						value:  amount of resources an action requires and will be removed from the player if action is attempted
-                text								value: 	a KEY referring to politicstext.properties to indicate the texts used for regarding this action
+				text								value: 	a KEY referring to politicstext.properties to indicate the texts used for regarding this action
 				actionAccept						value: 	a list of players that must accept this action before it takes effect (handy for peacetreaties)
 				attemptsPerTurn						value: 	the number of times this action can be attempted per round (default: 1)
 				relationshipChange					value: 	the relationshipType that will exist after the action is succesful between the player and the otherPlayer format: "player1:player2:relationship"
@@ -3910,8 +3910,8 @@
 			<option name="text" value="ITALY_DECLAREWAR_RUSSIA"/>
 			<option name="chance" value="6:6"/>
 			<option name="costResources" value="10:PUs"/>
-            <option name="costResources" value="2:Iron"/>
-            <option name="costResources" value="1:Fuel"/>
+			<option name="costResources" value="2:Iron"/>
+			<option name="costResources" value="1:Fuel"/>
 			<option name="attemptsPerTurn" value="1"/>
 		</attachment>
 		<attachment name="politicalActionAttachmentItaliansProposeCeasefireRussians" attachTo="Italians" javaClass="games.strategy.triplea.attachments.PoliticalActionAttachment" type="player">
@@ -3957,6 +3957,7 @@
 			<option name="relationshipChange" value="British:Russians:Allied"/>
 			<option name="text" value="RUSSIANS_ALLY_AMERICANS_BRITISH"/>
 			<option name="chance" value="6:6"/>
+			<option name="costResources" value="1:PUs"/>
 			<option name="attemptsPerTurn" value="1"/>
 			<option name="actionAccept" value="Americans:British"/>
 		</attachment>
@@ -3966,6 +3967,7 @@
 			<option name="relationshipChange" value="British:Russians:Allied"/>
 			<option name="text" value="AMERICANS_BRITISH_ALLY_RUSSIANS"/>
 			<option name="chance" value="6:6"/>
+			<option name="costResources" value="2:PUs"/>
 			<option name="attemptsPerTurn" value="1"/>
 			<option name="actionAccept" value="Russians"/>
 		</attachment>
@@ -3975,6 +3977,7 @@
 			<option name="relationshipChange" value="British:Russians:Allied"/>
 			<option name="text" value="AMERICANS_BRITISH_ALLY_RUSSIANS"/>
 			<option name="chance" value="6:6"/>
+			<option name="costResources" value="3:PUs"/>
 			<option name="attemptsPerTurn" value="1"/>
 			<option name="actionAccept" value="Russians"/>
 		</attachment>-->
@@ -4011,10 +4014,10 @@
       <option name="activateTrigger" value="triggerAttachment_Americans_Aid_UK:1:false:false:false:false"/>
       <option name="text" value="AMERICANS_AID_UK"/>
       <option name="chance" value="6:6"/>
+      <option name="costResources" value="PUs" count="10"/>
+      <!--<option name="costResources" value="Fuel" count="5"/>-->
       <option name="attemptsPerTurn" value="1"/>
       <!--<option name="actionAccept" value="British"/>-->
-	  <!--<option name="costResources" value="10:PUs"/>-->
-      <!--<option name="costResources" value="5:Fuel"/>-->
     </attachment>
     <!-- Tech Ability Attachment -->
     <!-- Custom (Generic) Techs that name a hard coded tech (ie: we are changing the name of a hardcoded tech) may NOT have a tech ability attachment.  If you want a tech ability attachment for your tech, either use a custom (generic) tech, or do not rename a hard coded tech. -->
