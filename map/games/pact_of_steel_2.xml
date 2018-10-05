@@ -1743,8 +1743,9 @@
 														examples: <option name="whenCapturedChangesInto" value="any:any:true:Minor_Factory:1"/> and <option name="whenCapturedChangesInto" value="Russians:Germans:false:gold:3:lumber:1"/>
 		whenCapturedSustainsDamage				values: unit takes specified amount of damage when captured
 														examples: <option name="whenCapturedSustainsDamage" value="5"/>
-		isAirBase						values: allows units with canScramble to scramble from a territory with this unit
+		isAirBase						values: allows units with canScramble and requiresAirbaseToIntercept function from a territory with this unit
 		maxScrambleCount					values: max number of units which can scramble from this air base. defaults to infinite.
+		maxInterceptCount					values: max number of units which can intercept from this air base. defaults to infinite.
 		givesMovement						values: allows a unit to give movement to other units.  must be an integer, followed by a colon ":", followed by the name of the unit
 		repairsUnits						values: is a colon delimited list of all the units this unit can repair. it should start with the amount to be repaired (or use 'count' for the amount to be repaired) each turn. if not used, defaults to 1.
 														units to be repaired must be in the same territory as this unit. unless the unit being repaired is sea, and the unit repairing it is land, in which case the sea unit must be adjacent to the land unit
@@ -1760,6 +1761,7 @@
 														damage - specifies how many points of damage, transferAttributes - if new unit keeps damage amount, unitType - new unit
 		
 		canIntercept						values: allows this unit to participate in air raids (air battles for strat bombing), as a defending unit
+		requiresAirbaseToIntercept				values: if true then intercepting units must have an airbase like scrambling
 		canEscort							values: allows this unit to participate in air raids (air battles for strat bombing), as an attacking unit
 		canAirBattle						values: allows this unit to participate in air battles (for normal battles), as an attacking or defending unit
 		airDefense							values: defense value of interceptor
@@ -1904,6 +1906,7 @@
       <option name="canScramble" value="true"/>
       <option name="maxScrambleDistance" value="1"/>
       <option name="canIntercept" value="true"/>
+      <!-- <option name="requiresAirbaseToIntercept" value="true"/> -->		    
       <option name="canEscort" value="true"/>
       <option name="canAirBattle" value="true"/>
       <option name="airDefense" value="2"/>
@@ -2110,6 +2113,7 @@
       <option name="maxOperationalDamage" value="2"/>
       <!-- isAirBase allows units with canScramble to scramble from a territory with this unit -->
       <option name="isAirBase" value="true"/>
+      <!-- <option name="maxInterceptCount" value="2"/> -->
       <option name="isConstruction" value="true"/>
       <option name="constructionType" value="airfield_structure"/>
       <option name="constructionsPerTerrPerTypePerTurn" value="1"/>
