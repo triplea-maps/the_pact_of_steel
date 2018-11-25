@@ -2706,7 +2706,7 @@
 															If you are changing the properties of the same unit, then unitType should be the same as attachTo
 				faction								values: "allied" or "enemy"
 				side								values: "offence" or "defence", support when attacking or defending, can be both (example: value="offence:defence"). The side the attached-to unit is on when giving this support.
-				dice								values: "strength" or "roll", may be a list of both
+				dice								values: "strength", "roll", "AAstrength", or "AAroll"; may be a list of multiple; AA options give support to AA values during regular combat (doesn't effect SBR or fly over)
 				bonus								values: how much to add to strength or roll
 				number								values: how many units to be supported
 				bonusType							values: the name of the bonus, any string. any bonus with the same name will not stack, any bonus with a different name will stack
@@ -2725,6 +2725,16 @@
 			<option name="bonusType" value="ArtyOld"/>
 			<option name="impArtTech" value="true"/>
 		</attachment>-->
+<!--    <attachment name="supportAttachmentAASupport" attachTo="AASupport" javaClass="games.strategy.triplea.attachments.UnitSupportAttachment" type="unitType">
+      <option name="unitType" value="AntiAir"/>
+      <option name="faction" value="allied"/>
+      <option name="side" value="defence"/>
+      <option name="dice" value="AAstrength"/>
+      <option name="bonus" value="2"/>
+      <option name="number" value="3"/>
+      <option name="bonusType" value="AABonus"/>
+      <option name="impArtTech" value="false"/>
+    </attachment>-->
     <attachment name="supportAttachmentRussiansArtillery2" attachTo="artillery" javaClass="games.strategy.triplea.attachments.UnitSupportAttachment" type="unitType">
       <option name="unitType" value="infantry"/>
       <option name="faction" value="allied"/>
