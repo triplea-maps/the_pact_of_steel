@@ -3909,7 +3909,6 @@
 				chance								value: 	diceroll:dicesides to hit for this action to succeed for example "1:6" for the action to succeed 1 out of 6 times
 				chanceIncrementOnFailure 			value: 	integer that will increase our chance by x each time we fail (default = 0)
 				chanceDecrementOnSuccess 			value: 	integer that will decrease our chance by x each time we succeed (default = 0)
-				costPU								DEPRECATED: please use costResources
 				costResources						value:  amount of resources an action requires and will be removed from the player if action is attempted
 				text								value: 	a KEY referring to politicstext.properties to indicate the texts used for regarding this action
 				actionAccept						value: 	a list of players that must accept this action before it takes effect (handy for peacetreaties)
@@ -4005,7 +4004,6 @@
 				chance								value: 	diceroll:dicesides to hit for this action to succeed for example "1:6" for the action to succeed 1 out of 6 times
 				chanceIncrementOnFailure 			value: 	integer that will increase our chance by x each time we fail (default = 0)
 				chanceDecrementOnSuccess 			value: 	integer that will decrease our chance by x each time we succeed (default = 0)
-				costPU								DEPRECATED: please use costResources
 				costResources						value:  amount of resources an action requires and will be removed from the player if action is attempted
 				text								value: 	a KEY referring to actionstext.properties to indicate the texts used for regarding this action
 				actionAccept						value: 	a list of players that must accept this action before it takes effect
