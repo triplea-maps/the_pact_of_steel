@@ -15,6 +15,75 @@
   <triplea minimumVersion="1.8"/>
   <!-- diceSides defaults to 6 if not in the xml.  Can be set to any number between 1 and 200.  Setting diceSides to a number other than 6 can result in unexpected behavior. -->
   <diceSides value="6"/>
+  <!-- variableList provides a way to define "variables" which represent a list of elements in order to manage that list in a single place and avoid copying-pasting it multiple times. Whenever the variable name is specified in attachments using $nameOfVariable$, its replaced with a colon delimited string of the elements (ex. "$russianAntiAirTargets$" would be replaced by "russianFighter:russianTacticalBomber". They can be used in attachment "foreach" attributes as well to allow having an attachment "template" which then generates multiple attachments by looping over the elements and replacing each element into @nameOfVariable@. This is particularly useful for repetitive attachments where only a few values change across them (see "foreach" below in attachments for more detail/examples). -->
+  <!--<variableList>
+    <variable name="AntiTankTargets">
+      <element name="germanMech.Infantry"/>
+      <element name="germanTank"/>
+      <element name="germanHeavyTank"/>
+      <element name="germanHeavyTank-damaged"/>
+      <element name="russianMech.Infantry"/>
+      <element name="russianTank"/>
+      <element name="russianHeavyTank"/>
+      <element name="russianHeavyTank-damaged"/>
+      <element name="americanMech.Infantry"/>
+      <element name="americanTank"/>
+      <element name="americanHeavyTank"/>
+      <element name="americanHeavyTank-damaged"/>
+      <element name="italianMech.Infantry"/>
+      <element name="italianTank"/>
+      <element name="italianHeavyTank"/>
+      <element name="italianHeavyTank-damaged"/>
+      <element name="japaneseMech.Infantry"/>
+      <element name="japaneseTank"/>
+      <element name="japaneseHeavyTank"/>
+      <element name="japaneseHeavyTank-damaged"/>
+      <element name="britishMech.Infantry"/>
+      <element name="britishTank"/>
+      <element name="britishHeavyTank"/>
+      <element name="britishHeavyTank-damaged"/>
+      <element name="chineseMech.Infantry"/>
+      <element name="chineseTank"/>
+      <element name="spanishTank"/>
+      <element name="brazilianTank"/>
+      <element name="turkishTank"/>
+      <element name="swedishTank"/>
+    </variable>	
+    <variable name="Infantry">
+      <element name="germanInfantry"/>
+      <element name="russianInfantry"/>
+    </variable>   
+    <variable name="Barracks">
+      <element name="germanBarracks"/>
+      <element name="russianBarracks"/>
+    </variable>
+    <variable name="TriggerPlayers">
+      <element name="Germany"/>
+      <element name="Brazil"/>
+    </variable>
+    <variable name="Phases">
+      <element name="germanyBattle"/>
+      <element name="brazilBattle"/>
+    </variable>-->
+    <!-- This shows how variables can be chained together to combine lists of elements -->	
+    <!--<variable name="russianAntiAirTargets">
+      <element name="russianFighter"/>
+      <element name="russianTacticalBomber"/>
+    </variable>
+    <variable name="americanAntiAirTargets">
+      <element name="americanFighter"/>
+      <element name="americanTacticalBomber"/>
+    </variable>
+    <variable name="AntiAirTargets">
+      <element name="$russianAntiAirTargets$"/>
+      <element name="$americanAntiAirTargets$"/>
+    </variable>-->
+    <!-- Having an element that is empty ("") means that whatever option that is referenced by in a foreach using @nameOfVariable@ will skip that option (see attachment "foreach" for more details) -->
+    <!--<variable name="Players">
+      <element name="Germany"/>
+      <element name=""/>
+    </variable>
+  </variableList>-->	
   <map>
     <!-- Territory Definitions -->
     <territory name="Eastern Canada"/>
@@ -1487,6 +1556,42 @@
     </playerTech>
   </technology>
   <attachmentList>
+	  
+  <!-- FOREACH: All attachments can use the "foreach" attribute to generate multiple similar attachments from a template. The "foreach" attribute must reference "variables" defined near the start of the XML which define a list of elements. The "foreach" then loops through these elements one at a time and replaces them in the attachment template where @nameOfVariable@ is specified. If there is an empty element in the list then any option in the attachment which references that will be skipped for that iteration. Here is an example of generating 2 similar triggers using this feature:
+  Here we define 2 variables: Players and Phases
+  <variableList>
+    <variable name="Players">
+      <element name="Germany"/>
+      <element name="Brazil"/>
+    </variable>
+    <variable name="Phases">
+      <element name="germanyBattle"/>
+      <element name=""/>
+    </variable>
+  </variableList>
+  Here we have our attachment "template" that uses foreach and references both of our variables (foreach="$Players$:$Phases$") and uses the elements of these to replace into the template where @Players@ and @Phases@ are specified.
+    <attachment foreach="$Players$:$Phases$" name="triggerAttachmentLiberationUsaBy@Players@" attachTo="@Players@" javaClass="games.strategy.triplea.attachments.TriggerAttachment" type="player">
+      <option name="conditions" value="conditionAttachmentWashingtonlost:conditionAttachmentChicagolost"/>
+      <option name="when" value="after:@Phases@"/>
+      <option name="players" value="Usa"/>
+      <option name="playerAttachmentName" value="RulesAttachment" count="conditionAttachmentLiberationUsa"/>
+      <option name="playerProperty" value="switch" count="true"/>
+    </attachment>
+  Here are the 2 attachments which would be generated by the engine using these 2 variables and the above template. You can see that the second one skips the "when" option as the "Phases" variable's second element is empty.
+    <attachment name="triggerAttachmentLiberationUsaByGermany" attachTo="Germany" javaClass="games.strategy.triplea.attachments.TriggerAttachment" type="player">
+      <option name="conditions" value="conditionAttachmentWashingtonlost:conditionAttachmentChicagolost"/>
+      <option name="when" value="after:germanyBattle"/>
+      <option name="players" value="Usa"/>
+      <option name="playerAttachmentName" value="RulesAttachment" count="conditionAttachmentLiberationUsa"/>
+      <option name="playerProperty" value="switch" count="true"/>
+    </attachment>
+    <attachment name="triggerAttachmentLiberationUsaByBrazil" attachTo="Brazil" javaClass="games.strategy.triplea.attachments.TriggerAttachment" type="player">
+      <option name="conditions" value="conditionAttachmentWashingtonlost:conditionAttachmentChicagolost"/>
+      <option name="players" value="Usa"/>
+      <option name="playerAttachmentName" value="RulesAttachment" count="conditionAttachmentLiberationUsa"/>
+      <option name="playerProperty" value="switch" count="true"/>
+    </attachment>-->	  
+	  
     <!--  relationshipType Attachments -->
     <!--  each PoliticalRelationship needs a relationshipTypeAttachment
 		and each relationshipTypeAttachment needs an option: archetype that needs to be set to one of the following 3 values:
