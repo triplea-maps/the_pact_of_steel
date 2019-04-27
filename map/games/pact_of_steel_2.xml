@@ -1890,7 +1890,7 @@
 		maxBuiltPerPlayer					values: is the number of this unit that can be BUILT by a player.  If they have fewer than this number they can build more, if they have more than this number they can not build more
 														[this does not cause excess ones to disappear, and the player can still capture more and more of them if they are capturable]
 		canOnlyBePlacedInTerritoryValuedAtX	values: the minimum territory value to place the unit there. defaults to "-1" which means anywhere
-		unitPlacementRestrictions			values: a list of territories where this unit can not be built. list can contain any number of territories, including sea zones .
+		unitPlacementRestrictions			values: a list of territories or territoryEffects where this unit can not be built. List can contain any number of territories, including sea zones, and territoryEffects. If using territoryEffects then TerritoryAttachments specifying the territoryEffects must come before UnitAttachments in the XML.
 														every unit may have a list, and the lists may be different for each unit. default is no list.
 														the list may be turned on/off with "Unit Placement Restrictions" game property
 		unitPlacementOnlyAllowedIn			values: is the direct inverse of unitPlacementRestrictions
@@ -2774,6 +2774,7 @@
 				landTerritories						values: a colon (":") delimited list of the territories that make up this canal. must match its counterpart attachment. Can be any number of territories, but at least 1 territory.
 				excludedUnits						values: an optional list of all the units that will NOT be validated by the canal. If left blank, then all Air units will not be validated. Can also be set to "NONE" or "ALL".
 															example: <option name="excludedUnits" value="submarine:fighter:bomber:air_transport"/>
+				canNotMoveThroughDuringCombatMove			values: true/false, defaults to false, setting to true allows canals to only be moved through during non-combat move which can be very useful for simulating connections take more time to pass through
 		-->
     <attachment name="canalAttachmentSuez" attachTo="15 Sea Zone" javaClass="games.strategy.triplea.attachments.CanalAttachment" type="territory">
       <option name="canalName" value="Suez Canal"/>
@@ -3952,6 +3953,7 @@
     <!-- the following options are allowed for "playerAttachment"
 				giveUnitControl						values: allow multiple players to give units to multiple other players, if those units are in a designated territory
 																must be a list of the player's names, in a ":" delimited list.  Example: value="Russians:Chinese"
+				giveUnitControlInAllTerritories				values: true/false, defaults to false, setting this to true makes it so all territories will check if units should be given to another player. This is primarily just a short cut to avoid having to put the changeUnitOwners option on every territory.
 				captureUnitOnEnteringBy				values: allows multiple players to let their units be captured by multiple other players, if those units are in a designated territory and a designated player captures that territory
 																must be a list of the player's names, in a ":" delimited list.  Example: value="Russians:Chinese"
 				shareTechnology						values: automatically gives all technologies this player has to all players in the list, during tech activation phase. must be a list of the player's names, in a ":" delimited list.  Example: value="Russians:Chinese"
