@@ -1590,7 +1590,24 @@
       <option name="players" value="Usa"/>
       <option name="playerAttachmentName" value="RulesAttachment" count="conditionAttachmentLiberationUsa"/>
       <option name="playerProperty" value="switch" count="true"/>
-    </attachment>-->	  
+    </attachment>
+  There is also the ability to do a nested foreach loop (limited to just 1 level though) using the '^' character. For example, if there are 2 variables 'Territories' and 'Players' then I could do a nested loop to generate say a trigger for all combinations of territories and players: foreach="$Territories$^$Players$"
+  Here is an example that replaces "Factories" with "NavalFactories" for any territories that are designated as "PortTerritories". If there are ~50 port territories and ~10 different players then not using this feature it would require 500 conditions, 500 remove factory triggers, and 500 add naval factory triggers for a total of 1500 conditions/triggers. But with a nested foreach loop I can achieve this with 3 conditions/triggers:
+        <attachment foreach="$PortTerritories$^$MajorPlayers$:$PlayerPrefixes$" name="conditionAttachmentHas@PlayerPrefixes@Factory@PortTerritories@" attachTo="@MajorPlayers@" javaClass="RulesAttachment" type="player">
+            <option name="directPresenceTerritories" value="@PortTerritories@"/>
+            <option name="unitPresence" value="@PlayerPrefixes@Factory" count="1"/>
+        </attachment>
+        <attachment foreach="$PortTerritories$^$MajorPlayers$:$PlayerPrefixes$" name="triggerAttachmentAdd@PlayerPrefixes@NavalFactory@PortTerritories@" attachTo="@MajorPlayers@" javaClass="TriggerAttachment" type="player">
+            <option name="conditions" value="conditionAttachmentHas@PlayerPrefixes@Factory@PortTerritories@"/>
+            <option name="when" value="after:@PlayerPrefixes@Place"/>
+            <option name="placement" value="@PortTerritories@:@PlayerPrefixes@NavalFactory"/>     
+        </attachment>
+        <attachment foreach="$PortTerritories$^$MajorPlayers$:$PlayerPrefixes$" name="triggerAttachmentRemove@PlayerPrefixes@Factory@PortTerritories@" attachTo="@MajorPlayers@" javaClass="TriggerAttachment" type="player">
+            <option name="conditions" value="conditionAttachmentHas@PlayerPrefixes@Factory@PortTerritories@"/>
+            <option name="when" value="after:@PlayerPrefixes@Place"/>
+            <option name="removeUnits" value="@PortTerritories@:@PlayerPrefixes@Factory"/>     
+        </attachment>
+-->	  
 	  
     <!--  relationshipType Attachments -->
     <!--  each PoliticalRelationship needs a relationshipTypeAttachment
