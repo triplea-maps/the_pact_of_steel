@@ -1847,8 +1847,6 @@
 		canBombard						values: allows a sea unit to bombard the enemy during an amphibious assault
 		bombard							values: the value this unit bombards at. defaults to the attack value of the unit if missing
 		blockade						values: allows the unit to do damage up to the value of land territories surrounding a blockade zone, to the enemy's income
-		isDestroyer						values: cancels out an isSub unit's first strike and submerge abilities, and allows it to be hit by air units if using ww2v3 rules
-		isSub							values: allows the unit to roll dice before other units, and submerge or retreat from battle even on defense, and if using ww2v3 rules not be hit by air unless the enemy has an isDestroyer
 		
 		canBeDamaged						values: sets if a unit can be attacked by strategic bombing raids or by rockets.  isFactory also allows these things
 		maxDamage						values: is the total bombing damage the unit can take (defaults to 2 if not set).  If a factory, and canProduceXUnits = -1 or is missing then maxDamage will be a multiple of the territory value (maxDamage defaults to 2 if canProduceXUnits = -1), otherwise it will be a set number
@@ -1927,6 +1925,22 @@
 														if "More Constructions with/without Factory" = true, then the minimum will be either maxConstructionsPerTypePerTerr or the PU value of the territory (whichever number is greater) in territories with/without factories
 														if "Unlimited Constructions" = true, then this number becomes 10000
 		special								values:	a colon delimited list of possible options for this unit.  Currently only supports: "canOnlyPlaceInOriginalTerritories"
+
+	sub/destroyer related:
+		isDestroyer						values: cancels out an isSub unit's first strike and submerge abilities, and allows it to be hit by air units if using ww2v3 rules
+		isSub							values: allows the unit to roll dice before other units and submerge or retreat from battle even on defense
+										this is a shortcut option that sets the below 6 unit options based on the global sub properties specifically:
+										sets canEvade and isFirstStrike to true
+										sets canNotTarget to all air units
+										sets canNotBeTargetedBy to all air unit types if "Air Attack Sub Restricted" 
+										sets canBeMovedThroughEnemies to true if "Ignore Sub In Movement"
+										sets canMoveThroughEnemies to true if "Submersible Subs" 
+		canEvade						values: whether the unit can submerge or escape battle
+		isFirstStrike						values: whether to roll dice and take casualties before regular units
+		canNotTarget						values: colon delimited list of units that this unit can't target in battles, ex. subs not being able to target air units
+		canNotBeTargetedBy					values: colon delimited list of units that can't target this unit, ex. air units not being able to target subs
+		canMoveThroughEnemies					values: whether unit is unblockable and treats hostile territories as friendly
+		canBeMovedThroughByEnemies				values: whether enemies can move through territories if only these types of units are present (would also need blitz for enemy land territories)
 
 	aa related:
 		isAA								values: just sets isAAmovement, isAAforCombatOnly, isAAforBombingThisUnitOnly, isAAforFlyOverOnly, isInfrastructure, and isRocket to true.
