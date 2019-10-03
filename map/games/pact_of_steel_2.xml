@@ -2835,6 +2835,7 @@
 				number								values: how many units to be supported
 				bonusType							values: the name of the bonus, any string. Any bonus with the same name will not stack unless a count of how many can stack is specified, any bonus with a different name will stack. 
 													Can use count (defaults to 1) to stack the same bonusType on a single unit like <option name="bonusType" value="ArtStackBonus" count="3"/> where a unit could receive up to 3 units supporting it of that bonusType. Any support of the same bonusType MUST have the same count. 
+													A count of -1 indicates the support can stack infinitely and a count of 0 means it will not apply at all.
 													Please us the string "ArtyOld" if do not want your bonus to stack with normal artillery (ie: do not want the bonus to stack with any unit with the normal artillery attachment: <option name="artillery" value="true"/>)
 				players								values: names of players in a list, if missing defaults to no players, and if no players it means this support will not be active at start of game (can be activated later by a trigger) (example: value="Germans:Italians")
 				impArtTech							values: "true" or "false", does this support get doubled by the improvedArtillery technology?
