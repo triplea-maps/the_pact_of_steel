@@ -2830,14 +2830,23 @@
 				combatDefenseEffect					values: unit or colon delimited list of units, and the count of how much defense you want to give this unit
 				noBlitz								values: the names of the units that can't blitz through this territoryEffect, can be multiple units (separated by a colon ":")
 				unitsNotAllowed 					values: the names of the units that are not allowed into or through this territoryEffect, can be multiple units (separated by a colon ":")
-				
+				movementCostModifier 					values: unit or colon delimited list of units, and the count of how much to adjust base movement cost (can be any positive/negative decimal value)
+												multiple territory effect costs are added together, movement impacted by the property "Enter Territories With Higher Movement Costs Then Remaining Moves"
+    
 		<attachment name="territoryEffectAttachment" attachTo="mountain" javaClass="games.strategy.triplea.attachments.TerritoryEffectAttachment" type="territoryEffect">
 			<option name="combatOffenseEffect" value="infantry" count="1"/>
 			<option name="combatOffenseEffect" value="armour" count="-1"/>
 			<option name="combatDefenseEffect" value="infantry:armour" count="2"/>
 			<option name="noBlitz" value="armour"/>
 			<option name="unitsNotAllowed" value="armour"/>
+			<option name="movementCostModifier" value="cavalry" count="5"/>			
 		</attachment>
+		<attachment name="territoryEffectAttachment" attachTo="road" javaClass="games.strategy.triplea.attachments.TerritoryEffectAttachment" type="territoryEffect">
+        		<option name="movementCostModifier" value="infantry:artillery:tank" count="-0.5"/>
+		</attachment>
+        	<attachment name="territoryEffectAttachment" attachTo="Sea" javaClass="games.strategy.triplea.attachments.TerritoryEffectAttachment" type="territoryEffect">
+            		<option name="movementCostModifier" value="germanAntiAirGun" count="-1"/>
+        	</attachment>
 		-->
     <!-- Support Attachments -->
     <!-- the following options are allowed for "supportAttachmentXXX" (must be unique names!)
@@ -4912,6 +4921,10 @@
     </property>
     <!-- Units May Give Bonus Movement allows units with givesMovement to give other units bonus movement-->
     <property name="Units May Give Bonus Movement" value="true" editable="true">
+      <boolean/>
+    </property>
+    <!-- Used when setting movement costs with territory effects to determine if unit can use remaining movement to enter a territory with a higher cost -->
+    <property name="Enter Territories With Higher Movement Costs Then Remaining Moves" value="false" editable="false">
       <boolean/>
     </property>
     <!-- sea related -->
