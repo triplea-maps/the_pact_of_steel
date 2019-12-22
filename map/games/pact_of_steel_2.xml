@@ -3353,7 +3353,7 @@
 															notification can be used to play a sound as well. notifications will use the notification value + "_sounds" for the key in notifications.properties file, and will then use "notification_" + the notification.properties value as the new key to look for in the sounds.properties file.
 			resource							values: "PUs" or "techTokens" or any valid resource, given at end of turn phase.  "resource" will be affected by "each" in a condition statement.
 			resourceCount						values: the number of specified resource to be given
-			placement							values: places units at beginning of combat movement phase. first in list is territory to be placed it, then list of units, then count.  "placement" will be affected by "each" in a condition statement.
+			placement							values: places units at beginning of combat movement phase. first in list is territory to be placed in, then list of units, then count.  "placement" will be affected by "each" in a condition statement.
 														(example: value="Moscow:artillery:infantry" count="2" [if count is missing, defaults to 1])
 			removeUnits							values: removes up to that number of the desired unit, at the beginning of the combat move phase. "removeUnits" will be affected by "each" in a condition statement.
 														removeUnits list is done the same way as placement, but allows the option of "all" in place of the territory name, and also "all" in place of the unit type, such as value="all:all", or "Moscow:all", or "all:infantry". example: <option name="removeUnits" value="all:infantry" count="1"/>
@@ -3553,6 +3553,17 @@
       <option name="players" value="Russians:British:Americans:Chinese"/>
     </attachment>
     <!-- Germans Triggers -->
+    <attachment name="Conscription" attachTo="Germans" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
+      <option name="gameProperty" value="Conscription"/>
+    </attachment>
+    <attachment name="conditionAttachmentGermansRounds3-+" attachTo="Germans" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
+      <option name="rounds" value="3-+"/>
+    </attachment>
+    <attachment name="triggerAttachmentConscription" attachTo="Germans" javaClass="games.strategy.triplea.attachments.TriggerAttachment" type="player">
+      <option name="conditions" value="Conscription:conditionAttachmentGermansRounds3-+"/>
+      <option name="placement" value="Germany:infantry" count="2"/>
+      <option name="when" value="after:germanPlace"/>
+    </attachment>
     <attachment name="triggerAttachmentGermans3_SuperSubs" attachTo="Germans" javaClass="games.strategy.triplea.attachments.TriggerAttachment" type="player">
       <option name="conditions" value="conditionAttachmentGermans1"/>
       <option name="tech" value="superSub"/>
@@ -5139,6 +5150,9 @@
       <boolean/>
     </property>
     <property name="Neutral Flyover Allowed" value="false" editable="false">
+      <boolean/>
+    </property>
+    <property name="Conscription" value="false" editable="true">
       <boolean/>
     </property>
     <!-- Map Name: also used for map utils when asked (MUST exactly match the folder or zip name of your map (do not include the .zip of course). May point to another map folder if you are making a mod of that map) -->
