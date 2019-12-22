@@ -2963,19 +2963,6 @@
 			switch								values: "true" or "false" (default is true).  This is just a simple on/off switch, which gives map makers some memory function for their conditions.
 			turns								values: which turns this will be checked on (example: value="1:4:6-8:11-+" means turns 1,4,6,7,8,11,and all turns after 11)
 			gameProperty 						values: can be set equal to the exact string of any boolean game property option, including custom made up ones.Here is an example of a custom one:
-			<attachment name="Conscription" attachTo="Germans" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
-      <option name="gameProperty" value="Conscription Call Up"/>
-    </attachment>
-    <attachment name="conditionAttachmentGermansRounds3-+" attachTo="Germans" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
-      <option name="rounds" value="3-+"/>
-    </attachment>
-    <attachment name="triggerAttachmentConscription" attachTo="Germans" javaClass="games.strategy.triplea.attachments.TriggerAttachment" type="player">
-      <option name="conditions" value="Conscription:conditionAttachmentGermansRounds3-+"/>
-      <option name="placement" value="Germany:infantry" count="2"/>
-      <option name="when" value="after:germanPlace"/>
-      </attachment>
-      This will place 2 infantry in Germany at the end of Germany's "germanPlace" phase beginning round 3 and will continue to place each round for the rest of the game.
-			
 			relationship						values: a relationship that needs to be present in the game: "player1:player2:relationship" (will set #rounds to -1 by default) OR "player1:player2:relationship:numberOfRoundsThisRelationshipMustExistForMinimum"
 														for example: "Japan:China:War" or "Japan:China:War:-1" or "Japan:China:War:3".  It will accept "anyWar", "anyNeutral" and "anyAllied" as well.
 			battle								values: checks if there has been a battle in the territory. Format is "attacker:defender:battleType:rounds:territory1", where attacker, defender, and battleType can all be "any", and rounds can be "currentRound".
