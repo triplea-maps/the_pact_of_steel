@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE game SYSTEM "game.dtd">
 <game>
-  <info name="Pact of Steel 2" version="3.81"/>
+  <info name="Pact of Steel 2" version="3.8"/>
   <!-- A MOD of original POS by VEQRYN
 			The purpose is to provide a fun game that shows off many features of TripleA as well include 
 			documentation inside the xml in order to show map makers how to use all the features.
@@ -2962,7 +2962,7 @@
 			uses								values: integer for the maximum number of times it should be awarded. if missing it defaults to infinity. Only applies to objectiveValue, and does NOT determine if the conditions is true or false.
 			switch								values: "true" or "false" (default is true).  This is just a simple on/off switch, which gives map makers some memory function for their conditions.
 			turns								values: which turns this will be checked on (example: value="1:4:6-8:11-+" means turns 1,4,6,7,8,11,and all turns after 11)
-			gameProperty 						values: can be set equal to the exact string of any boolean game property option, including custom made up ones.Here is an example of a custom one:
+			gameProperty 						values: can be set equal to the exact string of any boolean game property option, including custom made up ones.
 			relationship						values: a relationship that needs to be present in the game: "player1:player2:relationship" (will set #rounds to -1 by default) OR "player1:player2:relationship:numberOfRoundsThisRelationshipMustExistForMinimum"
 														for example: "Japan:China:War" or "Japan:China:War:-1" or "Japan:China:War:3".  It will accept "anyWar", "anyNeutral" and "anyAllied" as well.
 			battle								values: checks if there has been a battle in the territory. Format is "attacker:defender:battleType:rounds:territory1", where attacker, defender, and battleType can all be "any", and rounds can be "currentRound".
