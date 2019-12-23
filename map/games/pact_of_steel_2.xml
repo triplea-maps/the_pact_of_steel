@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE game SYSTEM "game.dtd">
 <game>
-  <info name="Pact of Steel 2" version="3.8"/>
+  <info name="Pact of Steel 2" version="3.82"/>
   <!-- A MOD of original POS by VEQRYN
 			The purpose is to provide a fun game that shows off many features of TripleA as well include 
 			documentation inside the xml in order to show map makers how to use all the features.
@@ -3553,6 +3553,7 @@
       <option name="players" value="Russians:British:Americans:Chinese"/>
     </attachment>
     <!-- Germans Triggers -->
+    <!-- Here is an example of a "custom gameProperty" 
     <attachment name="Conscription" attachTo="Germans" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
       <option name="gameProperty" value="Conscription"/>
     </attachment>
@@ -3564,6 +3565,7 @@
       <option name="placement" value="Germany:infantry" count="2"/>
       <option name="when" value="after:germanPlace"/>
     </attachment>
+     This will place two infantry in Germany at the end of Germany's "germanPlace" phase beginning round 3 and will continue to place each round for the rest of the game. -->
     <attachment name="triggerAttachmentGermans3_SuperSubs" attachTo="Germans" javaClass="games.strategy.triplea.attachments.TriggerAttachment" type="player">
       <option name="conditions" value="conditionAttachmentGermans1"/>
       <option name="tech" value="superSub"/>
@@ -5152,9 +5154,12 @@
     <property name="Neutral Flyover Allowed" value="false" editable="false">
       <boolean/>
     </property>
+    <!-- This also needs to be added for the "custom gameProperty" example. 
     <property name="Conscription" value="false" editable="true">
       <boolean/>
-    </property>
+    </property> -->
+   
+    
     <!-- Map Name: also used for map utils when asked (MUST exactly match the folder or zip name of your map (do not include the .zip of course). May point to another map folder if you are making a mod of that map) -->
     <property name="mapName" value="the_pact_of_steel" editable="false">
       <string/>
