@@ -1832,8 +1832,10 @@
 		
 		canScramble						values: allows the aircraft to enter a surrounding sea zone if the enemy is doing an attack on or from the surrounding sea zone
 		maxScrambleDistance					values: the distance out an aircraft can scramble. anything higher than 1 is not supported well at this point.
-		isSuicide						values: makes a unit die before combat begins, however they do get to roll
-		isSuicideOnHit						values: if unit gets a hit in combat then it instantly dies, can be used for units like mines
+		isSuicide						values: DEPRECATED, use isSuicideOnAttack, isSuicideOnDefense, and isFirstStrike instead; sets isSuicideOnAttack to true, isFirstStrike to true, and isSuicideOnDefense to true if property "Defending Suicide and Munition Units Do Not Fire" is false
+		isSuicideOnAttack					values: unit suicides during round 1 when attacking, it will suicide right after its turn to fire so either right after normal rolls or right after first strike if that's set to true, can't target isSuicideOnDefense units since those will suicide themselves
+		isSuicideOnDefense					values: unit suicides during round 1 when defending, it will suicide right after its turn to fire so either right after normal rolls or right after first strike if that's set to true, can't target isSuicideOnAttack units since those will suicide themselves
+  		isSuicideOnHit						values: if unit gets a hit in combat then it instantly dies, can be used for units like mines
 		isKamikaze						values: allows an air unit to use up all of its movement to go to a battle
 		isStrategicBomber					values: allows a unit to bombing factories and canBeDamaged units
 		bombingMaxDieSides					values: is the max dice sides for a strategic bombing or rocket attack.  the default is to use the diceSides for the map.  this property is optional and is only used when you have "Use Bombing Max Dice Sides And Bonus" turned on.  this property is no longer affected by "Low Luck for Bombing and Territory Damage".
@@ -4922,11 +4924,11 @@
     <property name="Multiple AA Per Territory" value="true" editable="false">
       <boolean/>
     </property>
-    <!-- if false, (all property default to false), then units killed by suicide units can return fire.  if true, they can not return fire -->
+    <!-- DEPRECATED (only used with isSuicide), if false, (all property default to false), then units killed by suicide units can return fire.  if true, they can not return fire -->
     <property name="Suicide and Munition Casualties Restricted" value="false" editable="true">
       <boolean/>
     </property>
-    <!-- if suicide units act like normal units on defense, except that they can not die to attacks by other suicide units -->
+    <!-- DEPRECATED (only used with isSuicide), if suicide units act like normal units on defense, except that they can not die to attacks by other suicide units -->
     <property name="Defending Suicide and Munition Units Do Not Fire" value="false" editable="false">
       <boolean/>
     </property>
