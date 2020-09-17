@@ -8,8 +8,6 @@
 			If you have questions on how to use something, or think my documentation is not clear enough,
 			please go to the forum and make a post: https://forums.triplea-game.org/category/28/map-making
 	-->
-  <!-- loader is required by all xmls.  some xmls may use a different loader, like a puzzle game -->
-  <loader javaClass="games.strategy.triplea.TripleA"/>
   <!-- triplea minimumVersion is the minimum version number of TripleA that can play this game.  Many new xmls require features not present in older versions of TripleA. Should be "xx.xx.xx.xx", "xx.xx.xx", "xx.xx", or "xx".
 			An example would be a map using 'isInfrastructure' unit property would need at least TripleA version "1.2.6", while a map using 'whenCapturedChangesInto' would need at least TripleA version "1.4" -->
   <triplea minimumVersion="1.8"/>
@@ -1332,25 +1330,6 @@
       <frontierRules name="buyAirfield"/>
       <frontierRules name="buyHarbour"/>
     </productionFrontier>
-    <!--<productionFrontier name="Chinese_production">
-			<frontierRules name="buyInfantry"/>
-			<frontierRules name="buyArtillery"/>
-			<frontierRules name="buyArmour"/>
-			<frontierRules name="buyFighter"/>
-			<frontierRules name="buyBomber"/>
-			<frontierRules name="buyTransport"/>
-			<frontierRules name="buySubmarine"/>
-			<frontierRules name="buyDestroyer"/>
-			<frontierRules name="buyCruiser"/>
-			<frontierRules name="buyCarrier"/>
-			<frontierRules name="buyBattleship"/>
-			<frontierRules name="buySuper_Carrier"/>
-			<frontierRules name="buyBunker"/>
-			<frontierRules name="buyAAGun"/>
-			<frontierRules name="buyFactory"/>
-			<frontierRules name="buyAirfield"/>
-			<frontierRules name="buyHarbour"/>
-		</productionFrontier>-->
     <productionFrontier name="Chinese_CutOff_production">
       <frontierRules name="buyInfantry"/>
       <frontierRules name="buyArtillery"/>
@@ -2635,7 +2614,6 @@
     <attachment name="territoryAttachment" attachTo="Caucus" javaClass="games.strategy.triplea.attachments.TerritoryAttachment" type="territory">
       <option name="production" value="4"/>
       <option name="victoryCity" value="1"/>
-      <!--<option name="unitProduction" value="4"/>-->
       <!-- you can have multiple capitals per country, and can modify if they capture or destroy their PUs, and how many capitals are needed for that to happen -->
       <!--<option name="capital" value="Russians"/>-->
     </attachment>
@@ -2647,7 +2625,6 @@
     </attachment>
     <attachment name="territoryAttachment" attachTo="East Balkans" javaClass="games.strategy.triplea.attachments.TerritoryAttachment" type="territory">
       <option name="production" value="3"/>
-      <!--<option name="unitProduction" value="3"/>-->
     </attachment>
     <attachment name="territoryAttachment" attachTo="Wake Island" javaClass="games.strategy.triplea.attachments.TerritoryAttachment" type="territory">
       <option name="production" value="0"/>
@@ -2690,7 +2667,6 @@
       <option name="production" value="12"/>
       <option name="capital" value="Americans"/>
       <option name="victoryCity" value="1"/>
-      <!--<option name="unitProduction" value="12"/>-->
     </attachment>
     <attachment name="territoryAttachment" attachTo="Belorussia" javaClass="games.strategy.triplea.attachments.TerritoryAttachment" type="territory">
       <option name="production" value="2"/>
@@ -2703,7 +2679,6 @@
       <option name="production" value="8"/>
       <option name="capital" value="Russians"/>
       <option name="victoryCity" value="1"/>
-      <!--<option name="unitProduction" value="8"/>-->
     </attachment>
     <attachment name="territoryAttachment" attachTo="Anglo Egypt" javaClass="games.strategy.triplea.attachments.TerritoryAttachment" type="territory">
       <option name="production" value="2"/>
@@ -2739,7 +2714,6 @@
       <option name="production" value="8"/>
       <option name="capital" value="Japanese"/>
       <option name="victoryCity" value="1"/>
-      <!--<option name="unitProduction" value="8"/>-->
     </attachment>
     <attachment name="territoryAttachment" attachTo="Caroline Islands" javaClass="games.strategy.triplea.attachments.TerritoryAttachment" type="territory">
       <option name="production" value="0"/>
@@ -3079,31 +3053,7 @@
       <option name="objectiveValue" value="10"/>
       <option name="rounds" value="10-+"/>
     </attachment>
-    <!--
-		<attachment name="objectiveAttachmentAmericans8" attachTo="Americans" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
-			<option name="objectiveValue" value="12"/>
-			<option name="rounds" value="12-13"/>
-		</attachment>
 
-		<attachment name="objectiveAttachmentAmericans9" attachTo="Americans" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
-			<option name="objectiveValue" value="14"/>
-			<option name="rounds" value="14-15"/>
-		</attachment>
-
-		<attachment name="objectiveAttachmentAmericans10" attachTo="Americans" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
-			<option name="objectiveValue" value="16"/>
-			<option name="rounds" value="16-17"/>
-		</attachment>
-
-		<attachment name="objectiveAttachmentAmericans11" attachTo="Americans" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
-			<option name="objectiveValue" value="18"/>
-			<option name="rounds" value="18-19"/>
-		</attachment>
-
-		<attachment name="objectiveAttachmentAmericans12" attachTo="Americans" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
-			<option name="objectiveValue" value="20"/>
-			<option name="rounds" value="20-+"/>
-		</attachment>-->
     <!-- Chinese Objectives -->
     <attachment name="objectiveAttachmentChinese2_BurmaRoad" attachTo="Chinese" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
       <option name="objectiveValue" value="4"/>
@@ -3186,16 +3136,6 @@
     <attachment name="conditionAttachmentJapaneseParatroopers" attachTo="Japanese" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
       <option name="techs" value="paratroopers" count="1"/>
     </attachment>
-    <!--
-		<attachment name="conditionAttachmentJapaneseMidget1" attachTo="Japanese" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
-				<option name="alliedOwnershipTerritories" value="Okinawa:Philipine Islands" count="2"/>
-				<option name="invert" value="true"/>
-		</attachment>
-		
-		<attachment name="conditionAttachmentJapaneseMidget2" attachTo="Japanese" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
-				<option name="alliedOwnershipTerritories" value="East Indies:Borneo:New Guinea:Solomon Islands:Caroline Islands:Wake Island" count="6"/>
-				<option name="invert" value="true"/>
-		</attachment>-->
     <attachment name="conditionAttachmentJapaneseMidget" attachTo="Japanese" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
       <option name="alliedOwnershipTerritories" value="Okinawa:Philipine Islands:East Indies:Borneo:New Guinea:Solomon Islands:Caroline Islands:Wake Island" count="7"/>
       <option name="invert" value="true"/>
@@ -3324,14 +3264,7 @@
     <attachment name="conditionAttachmentChinese4" attachTo="Chinese" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
       <option name="alliedOwnershipTerritories" value="Japan" count="1"/>
     </attachment>
-    <!--
-		<attachment name="conditionAttachmentChineseParatroopers" attachTo="Chinese" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
-			<option name="techs" value="paratroopers" count="1"/>
-		</attachment>
 		
-		<attachment name="conditionAttachmentChineseShipyards" attachTo="Chinese" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
-			<option name="techs" value="shipyards" count="1"/>
-		</attachment>-->
     <!-- Triggers -->
     <!-- Triggers with "uses" will use up a single 'use' every round that they are used.  So a trigger that gives a player a tech, adds units to a territory, changes a relationship, and sends a notification to a player,
 				will use up a Single (1) use, assuming those four actions were done in a single round (as determined by the endRound phase [EndRoundDelegate])-->
@@ -4124,13 +4057,6 @@
       <option name="chance" value="6:6"/>
       <option name="attemptsPerTurn" value="1"/>
     </attachment>
-    <!--<attachment name="politicalActionAttachmentRussiansDeclareWarOnItalians" attachTo="Russians" javaClass="games.strategy.triplea.attachments.PoliticalActionAttachment" type="player">
-			<option name="conditions" value="conditionAttachmentRussiansNeutralItaliansFor2Turns"/>
-			<option name="relationshipChange" value="Italians:Russians:War"/>
-			<option name="text" value="RUSSIANS_DECLAREWAR_ITALIANS"/>
-			<option name="chance" value="6:6"/>
-			<option name="attemptsPerTurn" value="1"/>
-		</attachment>-->
     <attachment name="politicalActionAttachmentRussiansDeclareWarOnJapanese" attachTo="Russians" javaClass="games.strategy.triplea.attachments.PoliticalActionAttachment" type="player">
       <option name="conditions" value="conditionAttachmentRussiansNeutralJapan"/>
       <option name="relationshipChange" value="Japanese:Russians:War"/>
