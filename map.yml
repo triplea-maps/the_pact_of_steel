@@ -1,0 +1,4 @@
+map_name: the_pact_of_steel
+games:
+- {game_name: Pact of Steel, file_name: pact_of_steel.xml}
+- {game_name: Pact of Steel 2, file_name: pact_of_steel_2.xml}
