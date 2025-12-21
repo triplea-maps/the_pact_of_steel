@@ -1,4 +1,7 @@
 map_name: the_pact_of_steel
 games:
-- {game_name: Pact of Steel, file_name: pact_of_steel.xml}
-- {game_name: Pact of Steel 2, file_name: pact_of_steel_2.xml}
+# The next line is written in "condensed" YAML format, double quotes are required when there are spaces
+- {game_name: "Pact of Steel", file_name: pact_of_steel.xml}
+# The next two lines is the "expanded" way to write YAML. In this format, double quotes are usually optional
+- game_name: Pact of Steel 2
+  file_name: pact_of_steel_2.xml
